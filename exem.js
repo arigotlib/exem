@@ -282,22 +282,41 @@ let militaryUnit = {
   Mission1(militaryUnit)
   
  function Mission2(UnitObj){
- let a = []
- for (let i = 1; UnitObj.personnel.id != i; i++){
- a[i-1] = i}
- console.log(a.count);
-    return a.count ;
-
+    let a = UnitObj.personnel
+    console.log(a.length);
+    
+    return a.length
  }
+
  Mission2(militaryUnit)
 
 
 function Mission3(NewDeployment, UnitObj){
-    UnitObj.history = UnitObj.CurrentDeployment
+    UnitObj.history.push( UnitObj.CurrentDeployment) 
     UnitObj.CurrentDeployment = NewDeployment
     return UnitObj
 }
 
-function Mission4(){
-    
+
+
+let weapon1 = { 
+     type: "M4 Short",
+    quantity: 1,
+    status: "Operational"}
+
+
+function Mission4(FirearmObject, UnitObj){
+    let a = UnitObj.firearms
+    a.forEach(element => {
+        if(a.type == FirearmObject.type && a.status == FirearmObject.status){
+            a.quantity = a.quantity + FirearmObject.quantity
+            return UnitObj
+        }
+    });
+   UnitObj.firearms.push(FirearmObject);
+
+    return UnitObj 
 }
+
+Mission4(weapon1,militaryUnit)
+
